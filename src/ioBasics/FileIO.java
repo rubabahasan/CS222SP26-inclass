@@ -44,12 +44,15 @@ public class FileIO {
 			fileIn = new Scanner(new FileReader(filename));
 
 			int count = 0;
+			//loop while the file has more lines in it
 			while (fileIn.hasNextLine()) {
 				String line = fileIn.nextLine();
+				// checking if the line contains the word
 				if (line.toLowerCase().contains(word.toLowerCase())) {
 					System.out.print(count + 1 + ": ");
 					System.out.println(line);
 				}
+				//every line is counted for line number
 				count++;
 			}
 			
@@ -57,7 +60,45 @@ public class FileIO {
 			System.err.println(filename + " file not found");
 		}finally {
 			if(fileIn != null) {
+				// close file
 				fileIn.close();
+			}
+		}
+		
+	}
+	
+	public static void findWordsToFile(String filename, String word, String outputFilename) {
+		Scanner fileIn = null;
+		PrintWriter fileOut = null;
+
+		try {
+			fileIn = new Scanner(new FileReader(filename));
+			fileOut = new PrintWriter(outputFilename);
+
+			int count = 0;
+			//loop while the file has more lines in it
+			while (fileIn.hasNextLine()) {
+				String line = fileIn.nextLine();
+				// checking if the line contains the word
+				if (line.toLowerCase().contains(word.toLowerCase())) {
+					// printing if the line contains the word
+					fileOut.print(count + 1 + ": ");
+					fileOut.println(line);
+				}
+				//every line is counted for line number
+				count++;
+			}
+			
+		}catch(FileNotFoundException e) {
+			System.err.println(filename + " file not found");
+		}finally {
+			if(fileIn != null) {
+				// close file
+				fileIn.close();
+			}
+			if(fileOut != null)
+			{
+				fileOut.close();
 			}
 		}
 		
@@ -65,7 +106,7 @@ public class FileIO {
 	
 	
 	public static void main(String[] args) {
-		findWords("data/secretgarden.txt", "garden");
+		findWordsToFile("data/secretgarden.txt", "Basil", "output/writingoutput.txt");
 	}
 
 }
