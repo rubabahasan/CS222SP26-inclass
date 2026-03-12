@@ -1,5 +1,7 @@
 package basics;
 
+import oop.Point;
+
 public class BasicsClass2 {
 
 	public static int nextNum(int num) {
@@ -13,6 +15,8 @@ public class BasicsClass2 {
 	}
 	
 	public static void main(String[] args) {
+		
+		Point a = new Point();
 		// TODO Auto-generated method stub
 		int var, i,  j = 10, p;
 		
